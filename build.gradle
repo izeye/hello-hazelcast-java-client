@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'org.graalvm.buildtools.native' version '0.10.3'
 }
 
 group = 'com.izeye.helloworld'
@@ -10,10 +12,16 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.hazelcast:hazelcast:5.5.0'
+    // 5.5.0 throws "java.lang.NoSuchFieldException: ARTIFACT_ID"
+    // implementation 'com.hazelcast:hazelcast:5.5.0'
+    implementation 'com.hazelcast:hazelcast:5.2.1'
 
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+application {
+    mainClass = 'com.izeye.helloworld.Main'
 }
 
 test {
